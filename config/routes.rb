@@ -12,8 +12,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "/products" => "products#index"     # 'get' localhost:3000/api/v1/products
-      post "/products" => "products#create"   # 'post' localhost:3000/api/v1/products
+      # get "/products" => "products#index"     # 'get' localhost:3000/api/v1/products
+      # post "/products" => "products#create"   # 'post' localhost:3000/api/v1/products
+
+      resources :products, only: [ :index, :create ]
     end
   end
 end
