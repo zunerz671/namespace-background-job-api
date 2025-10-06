@@ -1,0 +1,42 @@
+Exercise:
+Create a brand new rails api
+rails new namespace-background-job-api --api --database=postgresql
+Push it up to GitHub
+Get it started
+Create the db
+Create the product model
+Migrate it
+Test it in rails console (create a product)
+Create the products controller in the api/v1 namespace
+rails g controller api/v1/products
+Add the index and create actions
+Add the routes for it (in the correct namespace):
+ Rails.application.routes.draw do
+  # regular products controller
+  get "/products" => "products#index"
+
+  # namespaced products controller
+  namespace :api do
+    namespace :v1 do
+      get "/products" => "products#index"
+      post "/products" => "products#create"
+      get "/products/:id" => "products#show"
+      put "/products/:id" => "products#update"
+      delete "/products/:id" => "products#destroy"
+
+      resources :products, only: [:index, :create]
+
+    end
+  end
+end
+Test it all out in HTTPie
+(edited)
+
+React
+
+Reply
+
+6:41
+Bonus:
+Test it out using resources instead of writing out the explicit routes
+Create another namespace for admins and add a controller and route/s for it
