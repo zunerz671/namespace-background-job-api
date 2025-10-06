@@ -2,6 +2,9 @@ class Api::V1::Admins::ProductsController < ApplicationController
     def index
     products = Product.all
 
+    HardWorker.perform_async("Junior", 3)
+    MessageWorker.perform_async("Jr", 5)
+
     render json: products
   end
 
