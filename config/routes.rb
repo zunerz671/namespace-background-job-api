@@ -7,4 +7,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # namespaced products controller
+
+  namespace :api do
+    namespace :v1 do
+      get "/products" => "products#index"     # 'get' localhost:3000/api/v1/products
+      post "/products" => "products#create"   # 'post' localhost:3000/api/v1/products
+    end
+  end
 end
