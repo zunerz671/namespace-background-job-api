@@ -3,7 +3,7 @@ class Api::V1::ProductsController < ApplicationController
     products = Product.all
 
     HardWorker.perform_async("Junior", 3)
-    MessageWorker.perform_async("Jr", 5)
+    # MessageWorker.perform_async("Jr", 5)
 
     render json: products
   end
@@ -13,6 +13,8 @@ class Api::V1::ProductsController < ApplicationController
       name: params[:name],
       price: params[:price]
     )
+
+    MessageWorker.perform_async("Jr", 5)
 
     if product.save
       render json: product
